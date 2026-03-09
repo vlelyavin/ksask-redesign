@@ -1157,6 +1157,10 @@ img {
   color: var(--royal-blue);
 }
 
+.feature-badge i {
+  color: var(--royal-blue);
+}
+
 .feature-title {
   font-size: 2rem;
   font-weight: 700;
