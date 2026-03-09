@@ -1707,16 +1707,49 @@ img {
 .certificates-section {
   padding: 120px 0;
   background: var(--gray-100);
+  position: relative;
+  overflow: hidden;
+}
+
+.certificates-section::before {
+  content: "";
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  border: 3px dashed var(--royal-blue-pale);
+  border-radius: 50%;
+}
+
+.certificates-section::after {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  background: var(--royal-blue-pale);
+  border-radius: 20px;
+  transform: rotate(15deg);
+  opacity: 0.5;
+}
+
+.certificates-section .section-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
 }
 
 .certificates-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 28px;
+  position: relative;
+  z-index: 1;
 }
 
 .certificate-card {
   background: var(--white);
+  border: none;
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   transition: all var(--transition-normal);
@@ -1724,13 +1757,30 @@ img {
 }
 
 .certificate-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-10px) rotate(2deg);
+  box-shadow: var(--shadow-xl);
 }
 
 .certificate-image {
   aspect-ratio: 3/4;
+  background: linear-gradient(135deg, var(--royal-blue-pale) 0%, var(--gray-100) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  position: relative;
+}
+
+.certificate-image::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 2px dashed var(--royal-blue);
+  border-radius: 8px;
+  opacity: 0.2;
 }
 
 .certificate-image img {
@@ -1742,19 +1792,19 @@ img {
 .certificate-content {
   padding: 20px;
   text-align: center;
+  background: var(--white);
 }
 
 .certificate-title {
-  font-size: 0.85rem;
-  color: var(--gray-600);
-  margin-bottom: 8px;
-  line-height: 1.4;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  font-weight: 600;
 }
 
 .certificate-number {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--royal-blue);
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  margin-top: 4px;
 }
 
 /* ========================================
