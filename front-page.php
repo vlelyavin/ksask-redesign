@@ -105,9 +105,9 @@
     ?>
     <div class="container">
       <h2 class="section-title animate-on-scroll"><?= $modules_title; ?></h2>
-      <p class="section-subtitle animate-on-scroll">
+      <div class="section-subtitle animate-on-scroll">
         <?= !empty($modules_group['subtitle']) ? esc_html($modules_group['subtitle']) : 'Повний набір інструментів для автоматизації всіх бізнес-процесів страхової компанії'; ?>
-      </p>
+      </div>
 
       <div class="modules-grid">
         <?php foreach ($module_tiles as $tile) { ?>
@@ -146,7 +146,7 @@
     ?>
     <div class="container">
       <h2 class="section-title animate-on-scroll"><?= $youtube_title; ?></h2>
-      <p class="section-subtitle animate-on-scroll"><?= $youtube_text; ?></p>
+      <div class="section-subtitle animate-on-scroll"><?= $youtube_text; ?></div>
 
       <div class="youtube-grid">
         <?php foreach ($youtube_videos as $video) { ?>
@@ -188,7 +188,7 @@
     ?>
     <div class="container">
       <h2 class="section-title animate-on-scroll"><?= $characteristics_title; ?></h2>
-      <p class="section-subtitle animate-on-scroll"><?= !empty($characteristics_section['subtitle']) ? esc_html($characteristics_section['subtitle']) : 'Функціонал, що відповідає найвищим стандартам страхової галузі'; ?></p>
+      <div class="section-subtitle animate-on-scroll"><?= !empty($characteristics_section['subtitle']) ? esc_html($characteristics_section['subtitle']) : 'Функціонал, що відповідає найвищим стандартам страхової галузі'; ?></div>
 
       <?php
       // Fallback badge texts and checklists for each feature block
@@ -286,7 +286,7 @@
       <div class="architecture-grid">
         <div class="architecture-content animate-on-scroll from-left">
           <h2 class="section-title"><?= $architecture_title; ?></h2>
-          <p class="section-subtitle"><?= $architecture_text; ?></p>
+          <div class="section-subtitle"><?= $architecture_text; ?></div>
 
           <?php
           // TODO: Register ACF field 'architecture_features' (repeater with icon_class, text) in architecture_section
@@ -348,7 +348,7 @@
     ?>
     <div class="container">
       <h2 class="section-title animate-on-scroll"><?= $history_title; ?></h2>
-      <p class="section-subtitle animate-on-scroll"><?= !empty($history_section['subtitle']) ? esc_html($history_section['subtitle']) : 'Хронологія розвитку системи КСАСК ProfITsoft'; ?></p>
+      <div class="section-subtitle animate-on-scroll"><?= !empty($history_section['subtitle']) ? esc_html($history_section['subtitle']) : 'Хронологія розвитку системи КСАСК ProfITsoft'; ?></div>
 
       <div class="history-vertical animate-on-scroll">
         <?php foreach ($history_versions as $version) { ?>
@@ -424,7 +424,7 @@
     ?>
     <div class="container">
       <h2 class="section-title animate-on-scroll"><?= $prices_title; ?></h2>
-      <p class="section-subtitle animate-on-scroll"><?= esc_html($prices_subtitle); ?></p>
+      <div class="section-subtitle animate-on-scroll"><?= esc_html($prices_subtitle); ?></div>
 
       <div class="pricing-grid">
         <!-- Card 1: License (featured) -->
@@ -577,7 +577,7 @@
     ?>
     <div class="container">
       <h2 class="section-title animate-on-scroll"><?= $certificates_title; ?></h2>
-      <p class="section-subtitle animate-on-scroll"><?= $certificates_text; ?></p>
+      <div class="section-subtitle animate-on-scroll"><?= $certificates_text; ?></div>
 
       <div class="certificates-grid">
         <?php foreach ($certificates_list as $certificate) { ?>
@@ -664,7 +664,7 @@
       <?php $posts_subtitle = !empty($posts_section['subtitle']) ? $posts_section['subtitle'] : 'Останні оновлення та новини про розвиток системи'; ?>
       <?php $read_more_text = !empty($posts_section['read_more_text']) ? $posts_section['read_more_text'] : 'Читати далі'; ?>
       <h2 class="section-title animate-on-scroll"><?= $posts_section_title; ?></h2>
-      <p class="section-subtitle animate-on-scroll"><?= esc_html($posts_subtitle); ?></p>
+      <div class="section-subtitle animate-on-scroll"><?= esc_html($posts_subtitle); ?></div>
 
       <div class="news-grid">
         <?php $news_stagger = 1; ?>
@@ -726,7 +726,7 @@
     ?>
     <div class="container">
       <h2 class="section-title animate-on-scroll"><?= $clients_title; ?></h2>
-      <p class="section-subtitle animate-on-scroll"><?= !empty($clients_section['subtitle']) ? esc_html($clients_section['subtitle']) : 'Провідні страхові компанії України довіряють КСАСК ProfITsoft'; ?></p>
+      <div class="section-subtitle animate-on-scroll"><?= !empty($clients_section['subtitle']) ? esc_html($clients_section['subtitle']) : 'Провідні страхові компанії України довіряють КСАСК ProfITsoft'; ?></div>
 
       <div class="clients-slider">
         <div class="clients-track">
