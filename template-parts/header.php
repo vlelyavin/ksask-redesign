@@ -12,12 +12,15 @@
   <link rel="preconnect" href="<?php echo site_url(); ?>" crossorigin="anonymous">
   <link rel="dns-prefetch" href="<?php echo site_url(); ?>" crossorigin="anonymous">
 
-  <link rel="preload" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/fonts/inter/inter_variable.woff2" as="font" crossorigin="anonymous">
+  <!-- Google Fonts: Inter with proper weight range (400-900) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/fonts/fonts.css?v=2.0" type="text/css" />
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/fonts/fonts.css?v=2.1" type="text/css" />
   <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/fontawesome/fontawesome.min.css?v=2.0" type="text/css" />
-  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/redesign.css?v=2.0" type="text/css" />
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/redesign.css?v=3.0" type="text/css" />
 
   <!-- Scripts -->
   <script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/general.js?v=2.0" defer></script>
