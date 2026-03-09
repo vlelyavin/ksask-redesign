@@ -496,6 +496,31 @@
     $exchange_image = !empty($exchange_section['image']) ? $exchange_section['image'] : '';
     $exchange_btn_text = !empty($exchange_section['button_text']) ? $exchange_section['button_text'] : '';
     $exchange_btn_url = !empty($exchange_section['button_url']) ? $exchange_section['button_url'] : '';
+
+    // Fallback: override wall-of-text description with short subtitle
+    if (empty($exchange_description) || strlen(strip_tags($exchange_description)) > 200) {
+      $exchange_description = 'Унікальна можливість для страхових компаній спільно розвивати систему та обмінюватись напрацюваннями';
+    }
+
+    // Fallback: benefit cards
+    if (empty($exchange_benefits)) {
+      $exchange_benefits = [
+        ['icon_class' => 'fas fa-user-tie', 'title' => 'Персональний менеджер', 'description' => 'Призначення персонального менеджера для вашої компанії'],
+        ['icon_class' => 'fas fa-tasks', 'title' => 'Реєстр задач', 'description' => 'Участь у спільному реєстрі задач на доопрацювання системи'],
+        ['icon_class' => 'fas fa-coins', 'title' => 'Накопичення балансу', 'description' => 'Ваші напрацювання конвертуються в баланс для майбутніх доопрацювань'],
+      ];
+    }
+
+    // Fallback: image
+    if (empty($exchange_image)) {
+      $exchange_image = 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=500&fit=crop';
+    }
+
+    // Fallback: button
+    if (empty($exchange_btn_text)) {
+      $exchange_btn_text = 'Докладніше про Фонд';
+      $exchange_btn_url = '#';
+    }
     ?>
     <div class="container">
       <div class="fund-exchange-grid">

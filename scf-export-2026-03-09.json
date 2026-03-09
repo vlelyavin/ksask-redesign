@@ -2448,7 +2448,7 @@
               "class": "",
               "id": ""
             },
-            "default_value": "",
+            "default_value": "Фонд обміну напрацюваннями",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2468,7 +2468,7 @@
               "class": "",
               "id": ""
             },
-            "default_value": "",
+            "default_value": "Унікальна можливість для страхових компаній спільно розвивати систему та обмінюватись напрацюваннями",
             "tabs": "all",
             "toolbar": "full",
             "media_upload": 1,
@@ -2513,7 +2513,7 @@
               "class": "",
               "id": ""
             },
-            "default_value": "",
+            "default_value": "Докладніше про Фонд",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -2572,7 +2572,7 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "",
+                "default_value": "fas fa-user-tie",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
@@ -2593,7 +2593,7 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "",
+                "default_value": "Персональний менеджер",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
@@ -2614,7 +2614,7 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "",
+                "default_value": "Призначення персонального менеджера для вашої компанії",
                 "maxlength": "",
                 "rows": "",
                 "placeholder": "",
