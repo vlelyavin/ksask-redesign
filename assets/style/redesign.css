@@ -1718,13 +1718,29 @@ img {
 .training-section {
   padding: 120px 0;
   background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.training-section::before {
+  content: "";
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 400px;
+  height: 400px;
+  background: var(--royal-blue-pale);
+  border-radius: 50%;
+  opacity: 0.5;
 }
 
 .training-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 80px;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .training-content .section-title {
@@ -1733,48 +1749,77 @@ img {
 
 .training-description {
   font-size: 1.1rem;
-  color: var(--gray-600);
+  color: var(--gray-700);
   line-height: 1.7;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .training-stats {
-  display: flex;
-  gap: 30px;
-  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 40px 0;
 }
 
 .training-stat {
   text-align: center;
-  padding: 20px;
+  padding: 28px 20px;
   background: var(--royal-blue-pale);
-  border-radius: var(--border-radius);
-  min-width: 100px;
+  border-radius: var(--border-radius-lg);
+  transition: all var(--transition-normal);
+}
+
+.training-stat:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
 }
 
 .training-stat-value {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: var(--royal-blue);
 }
 
 .training-stat-label {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--gray-600);
-  margin-top: 4px;
+  font-weight: 500;
 }
 
 .training-image {
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  position: relative;
 }
 
 .training-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.training-image::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 200px;
+  height: 200px;
+  background: var(--royal-blue-pale);
+  border-radius: var(--border-radius-lg);
+  z-index: 0;
+}
+
+.training-image::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 150px;
+  height: 150px;
+  border: 3px dashed var(--royal-blue);
+  border-radius: var(--border-radius-lg);
+  opacity: 0.3;
 }
 
 /* ========================================

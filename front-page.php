@@ -564,8 +564,8 @@
     <?php
     $education_section = get_field('education_section');
     $education_title = $education_section['title'];
-    $education_text = $education_section['text'];
-    $education_button_text = $education_section['button_text'];
+    $education_text = !empty($education_section['text']) ? $education_section['text'] : 'Комплексний курс навчання для адміністраторів та користувачів системи з видачею офіційного сертифіката.';
+    $education_button_text = !empty($education_section['button_text']) ? $education_section['button_text'] : 'Записатись на курс';
     $education_button_url = $education_section['button_url'];
     $education_image_url = $education_section['image_url'];
     ?>
