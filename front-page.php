@@ -401,8 +401,8 @@
               <div class="history-v-description"><?= $version['text']; ?></div>
               <?php if (!empty($version['features'])) { ?>
                 <div class="history-v-tags">
-                  <?php foreach (explode(',', $version['features']) as $tag) { ?>
-                    <span class="history-v-tag"><?= esc_html(trim($tag)); ?></span>
+                  <?php foreach (array_filter(array_map('trim', preg_split('/[\n,]+/', $version['features']))) as $tag) { ?>
+                    <span class="history-v-tag"><?= esc_html($tag); ?></span>
                   <?php } ?>
                 </div>
               <?php } ?>
