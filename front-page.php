@@ -346,7 +346,7 @@
               <div class="history-v-dot"></div>
             </div>
             <div class="history-v-card">
-              <span class="history-v-version"><?= esc_html($version['version']); ?></span>
+              <span class="history-v-version">Версія <?= esc_html($version['version']); ?></span>
               <h4 class="history-v-title"><?= esc_html($version['title']); ?></h4>
               <div class="history-v-description"><?= $version['text']; ?></div>
               <?php if (!empty($version['features'])) { ?>
