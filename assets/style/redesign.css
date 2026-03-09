@@ -1935,7 +1935,7 @@ img {
    ======================================== */
 .clients-section {
   padding: 100px 0;
-  background: var(--white);
+  background: var(--gray-100);
 }
 
 .clients-slider {
