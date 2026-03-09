@@ -1599,6 +1599,7 @@ img {
   margin-bottom: 30px;
   min-height: 200px;
   flex-grow: 1;
+  margin-top: auto;
 }
 
 .pricing-features li {
