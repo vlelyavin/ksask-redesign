@@ -20,7 +20,7 @@
   <!-- Styles -->
   <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/fonts/fonts.css?v=2.1" type="text/css" />
   <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/fontawesome/fontawesome.min.css?v=2.0" type="text/css" />
-  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/redesign.css?v=4.0" type="text/css" />
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/redesign.css?v=5.0" type="text/css" />
 
   <!-- Scripts -->
   <script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/general.js?v=2.0" defer></script>
