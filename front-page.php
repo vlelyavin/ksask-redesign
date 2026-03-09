@@ -120,6 +120,9 @@
               <?= $tile['icon']; ?>
             </div>
             <h3 class="module-title"><?= $tile['name']; ?></h3>
+            <?php if (!empty($tile['description'])) { ?>
+              <p class="module-description"><?= esc_html($tile['description']); ?></p>
+            <?php } ?>
           </<?= $tag; ?>>
         <?php
           $stagger++;
