@@ -93,10 +93,6 @@ $telegram_link = get_field("telegram_link", "option");
 
     <div class="footer-bottom">
       <p class="footer-copyright"><?= $footer_copyright; ?> <?= date("Y"); ?></p>
-      <div class="footer-bottom-links">
-        <a href="#">Політика конфіденційності</a>
-        <a href="#">Умови використання</a>
-      </div>
     </div>
   </div>
 </footer>
