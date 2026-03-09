@@ -252,6 +252,7 @@
     <div class="container">
       <div class="fund-exchange-grid">
         <div class="animate-on-scroll from-left">
+          <div class="feature-badge">🛒 Онлайн-продажі</div>
           <h2 class="section-title" style="text-align: left"><?= $shop_title; ?></h2>
           <div class="feature-description" style="max-width: 520px;">
             <?= $shop_text; ?>
