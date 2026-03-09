@@ -61,9 +61,7 @@
   $header_cta_url = get_field("header_cta_url", $current_lang);
 
   // Slide menu (per-language)
-  $slide_menu_quick_title = get_field("slide_menu_quick_actions_title", $current_lang) ?: 'Швидкі дії';
   $slide_menu_demo_text = get_field("slide_menu_demo_text", $current_lang) ?: 'Замовити демо';
-  $slide_menu_contact_text = get_field("slide_menu_contact_text", $current_lang) ?: 'Зв\'язатись';
   ?>
 
   <!-- Top Banner (always visible, not dismissible) -->
