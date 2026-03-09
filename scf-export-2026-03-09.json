@@ -1727,7 +1727,7 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "",
+                "default_value": "Ліцензія",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
@@ -1748,7 +1748,7 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "",
+                "default_value": "Безстрокове право використання КСАСК «ProfITsoft»",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
@@ -1894,7 +1894,7 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "",
+                "default_value": "Повний доступ до вихідного коду\nВсі модулі системи\nНеобмежена кількість користувачів\nБезстрокова ліцензія",
                 "maxlength": "",
                 "rows": "",
                 "placeholder": "",
@@ -1915,7 +1915,7 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "",
+                "default_value": "Дізнатись умови",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
@@ -1954,7 +1954,7 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "",
+                "default_value": "одноразовий платіж",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
@@ -2039,7 +2039,7 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "",
+                "default_value": "Технічна підтримка",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
@@ -2060,7 +2060,7 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "",
+                "default_value": "Команда інженерів для доопрацювання КСАСК",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
@@ -2102,7 +2102,7 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "",
+                "default_value": "Команда з 5 фахівців\nДоопрацювання під ваші потреби\nТехнічна підтримка 24/7\nОновлення системи",
                 "maxlength": "",
                 "rows": "",
                 "placeholder": "",
@@ -2185,7 +2185,7 @@
               "class": "",
               "id": ""
             },
-            "default_value": "",
+            "default_value": "Спеціальна пропозиція для страхових компаній України",
             "maxlength": "",
             "rows": "",
             "placeholder": "",
