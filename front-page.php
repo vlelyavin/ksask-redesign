@@ -102,6 +102,18 @@
     $modules_title = $modules_group['title'];
     $module_tiles = $modules_group['tiles'];
     $stagger = 1;
+
+    // Fallback descriptions for module tiles
+    $module_desc_defaults = [
+      'Управління продажами, калькулятори, оформлення договорів',
+      'Оцінка ризиків, затвердження умов, управління тарифами',
+      'Автоматичний розрахунок та виплата комісій агентам',
+      'Обробка збитків, виплати, регресні вимоги',
+      'Контроль фінансових операцій відповідно до законодавства',
+      'Добровільне медичне страхування та управління полісами',
+      'Управління договорами перестрахування та розрахунками',
+      'Бухгалтерський облік, звітність, управління фінансами',
+    ];
     ?>
     <div class="container">
       <h2 class="section-title animate-on-scroll"><?= $modules_title; ?></h2>
@@ -110,22 +122,24 @@
       </div>
 
       <div class="modules-grid">
-        <?php foreach ($module_tiles as $tile) { ?>
+        <?php $tile_index = 0; foreach ($module_tiles as $tile) { ?>
           <?php
           $tag = !empty($tile['destination_page']) ? 'a' : 'div';
           $href = !empty($tile['destination_page']) ? ' href="' . esc_url($tile['destination_page']) . '"' : '';
+          $tile_desc = !empty($tile['description']) ? $tile['description'] : (isset($module_desc_defaults[$tile_index]) ? $module_desc_defaults[$tile_index] : '');
           ?>
           <<?= $tag; ?><?= $href; ?> class="module-card animate-on-scroll stagger-<?= $stagger; ?>" style="text-decoration:none;">
             <div class="module-icon">
               <?= $tile['icon']; ?>
             </div>
             <h3 class="module-title"><?= $tile['name']; ?></h3>
-            <?php if (!empty($tile['description'])) { ?>
-              <p class="module-description"><?= esc_html($tile['description']); ?></p>
+            <?php if ($tile_desc) { ?>
+              <p class="module-description"><?= esc_html($tile_desc); ?></p>
             <?php } ?>
           </<?= $tag; ?>>
         <?php
           $stagger++;
+          $tile_index++;
         } ?>
       </div>
     </div>
