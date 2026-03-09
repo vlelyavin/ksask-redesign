@@ -729,6 +729,12 @@ img {
 
 .hero-title-highlight {
   color: var(--royal-blue);
+  position: relative;
+}
+
+.hero-title span,
+.hero-title em {
+  color: var(--royal-blue);
 }
 
 .hero-description {
