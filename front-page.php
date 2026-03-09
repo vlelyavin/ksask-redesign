@@ -204,6 +204,14 @@
               <div class="feature-description">
                 <?= $block['text']; ?>
               </div>
+              <?php // TODO: Register ACF field 'checklist_items' (repeater) in characteristics_section > section_blocks ?>
+              <?php if (!empty($block['checklist_items'])) { ?>
+                <ul class="feature-checklist">
+                  <?php foreach ($block['checklist_items'] as $item) { ?>
+                    <li><i class="fas fa-check-circle"></i> <?= esc_html($item['text']); ?></li>
+                  <?php } ?>
+                </ul>
+              <?php } ?>
             </div>
             <div class="feature-visual animate-on-scroll <?= ($feature_index % 2 !== 0) ? 'from-left' : 'from-right'; ?>">
               <div class="feature-decoration feature-decoration-<?= ($feature_index % 2 === 0) ? '1' : '2'; ?>"></div>

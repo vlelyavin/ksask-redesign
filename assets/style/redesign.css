@@ -1143,6 +1143,29 @@ img {
   line-height: 1.7;
 }
 
+.feature-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feature-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--gray-700);
+}
+
+.feature-checklist li i {
+  color: var(--royal-blue);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
 .feature-list {
   list-style: none;
 }
