@@ -1061,7 +1061,7 @@
                 "name": "badge_text",
                 "aria-label": "",
                 "type": "text",
-                "instructions": "Feature badge label, e.g. Гнучкість",
+                "instructions": "Feature badge label text (without emoji), e.g. Гнучкість",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1069,11 +1069,32 @@
                   "class": "",
                   "id": ""
                 },
-                "default_value": "⚙️ Гнучкість",
+                "default_value": "Гнучкість",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
                 "append": "",
+                "parent_repeater": "field_6707d821be4a3"
+              },
+              {
+                "key": "field_v5_badge_icon_001",
+                "label": "Badge Icon SVG",
+                "name": "badge_icon",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "Inline SVG code for the badge icon (16x16 viewBox recommended)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "rows": 3,
+                "placeholder": "",
+                "new_lines": "",
                 "parent_repeater": "field_6707d821be4a3"
               }
             ]

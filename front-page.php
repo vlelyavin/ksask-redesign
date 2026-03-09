@@ -191,26 +191,46 @@
       <div class="section-subtitle animate-on-scroll"><?= !empty($characteristics_section['subtitle']) ? esc_html($characteristics_section['subtitle']) : 'Функціонал, що відповідає найвищим стандартам страхової галузі'; ?></div>
 
       <?php
-      // Fallback badge texts and checklists for each feature block
+      // Fallback badge icons (inline SVG), texts and checklists for each feature block
       $feature_defaults = [
-        ['badge' => '⚙️ Гнучкість', 'checklist' => ['Налаштування без програмування', 'Візуальний редактор бізнес-процесів', 'Гнучка система ролей та прав доступу']],
-        ['badge' => '📊 Аналітика', 'checklist' => ['Дашборди в реальному часі', 'Звіти для НБУ та внутрішні', 'Аналіз збитковості портфеля']],
-        ['badge' => '🔗 Інтеграції', 'checklist' => ['API для зовнішніх систем', 'Імпорт/експорт даних', 'Інтеграція з ЦБД МТСБУ']],
-        ['badge' => '🛡️ Безпека', 'checklist' => ['Відповідність вимогам НБУ', 'Шифрування даних', 'Аудит усіх операцій']],
+        [
+          'badge_icon' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.5 2.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM4 6.5A1.5 1.5 0 1 1 2.5 5 1.5 1.5 0 0 1 4 6.5zm2.5 0A1.5 1.5 0 1 1 5 5a1.5 1.5 0 0 1 1.5 1.5zm5 0A1.5 1.5 0 1 1 10 5a1.5 1.5 0 0 1 1.5 1.5zM6.5 13.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM14 6.5A1.5 1.5 0 1 1 12.5 5 1.5 1.5 0 0 1 14 6.5z"/></svg>',
+          'badge_text' => 'Гнучкість',
+          'checklist' => ['Налаштування без програмування', 'Візуальний редактор бізнес-процесів', 'Гнучка система ролей та прав доступу'],
+        ],
+        [
+          'badge_icon' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 14h2V6H1v8zm4 0h2V2H5v12zm4 0h2V8H9v6zm4 0h2V4h-2v10z"/></svg>',
+          'badge_text' => 'Аналітика',
+          'checklist' => ['Дашборди в реальному часі', 'Звіти для НБУ та внутрішні', 'Аналіз збитковості портфеля'],
+        ],
+        [
+          'badge_icon' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.7 8.7l-2-2a1 1 0 0 0-1.4 1.4l2.7 2.7a1 1 0 0 0 1.4 0l2.7-2.7a1 1 0 0 0-1.4-1.4l-2 2zM11.3 7.3l2 2a1 1 0 0 1-1.4 1.4L9.2 8a1 1 0 0 1 0-1.4l2.7-2.7a1 1 0 0 1 1.4 1.4l-2 2z"/></svg>',
+          'badge_text' => 'Інтеграції',
+          'checklist' => ['API для зовнішніх систем', 'Імпорт/експорт даних', 'Інтеграція з ЦБД МТСБУ'],
+        ],
+        [
+          'badge_icon' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 1L2 4.5v4c0 3.5 2.6 6.4 6 7.5 3.4-1.1 6-4 6-7.5v-4L8 1zm0 2.2l4 2.3v3c0 2.6-1.9 4.8-4 5.7-2.1-.9-4-3.1-4-5.7v-3l4-2.3z"/></svg>',
+          'badge_text' => 'Безпека',
+          'checklist' => ['Відповідність вимогам НБУ', 'Шифрування даних', 'Аудит усіх операцій'],
+        ],
       ];
       ?>
       <div class="features-grid">
         <?php foreach ($characteristics_blocks as $block) { ?>
           <?php
-          $fb = isset($feature_defaults[$feature_index]) ? $feature_defaults[$feature_index] : ['badge' => '', 'checklist' => []];
-          $badge = !empty($block['badge_text']) ? $block['badge_text'] : $fb['badge'];
+          $fb = isset($feature_defaults[$feature_index]) ? $feature_defaults[$feature_index] : ['badge_icon' => '', 'badge_text' => '', 'checklist' => []];
+          $badge_icon = !empty($block['badge_icon']) ? $block['badge_icon'] : $fb['badge_icon'];
+          $badge_text = !empty($block['badge_text']) ? $block['badge_text'] : $fb['badge_text'];
           $checklist = !empty($block['checklist_items']) ? $block['checklist_items'] : array_map(function($t) { return ['text' => $t]; }, $fb['checklist']);
           ?>
           <div class="feature-row <?= ($feature_index % 2 !== 0) ? 'reverse' : ''; ?>">
             <div class="feature-content animate-on-scroll <?= ($feature_index % 2 !== 0) ? 'from-right' : 'from-left'; ?>">
-              <?php if ($badge) { ?>
+              <?php if ($badge_text) { ?>
                 <div class="feature-badge">
-                  <?= esc_html($badge); ?>
+                  <?php if ($badge_icon) { ?>
+                    <span class="feature-badge-icon"><?= $badge_icon; ?></span>
+                  <?php } ?>
+                  <?= esc_html($badge_text); ?>
                 </div>
               <?php } ?>
               <h3 class="feature-title"><?= $block['title']; ?></h3>
@@ -252,7 +272,10 @@
     <div class="container">
       <div class="fund-exchange-grid">
         <div class="animate-on-scroll from-left">
-          <div class="feature-badge">🛒 Онлайн-продажі</div>
+          <div class="feature-badge">
+            <span class="feature-badge-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5.5 13a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM1 1a1 1 0 0 0 0 2h1.2l1.6 7.2A2 2 0 0 0 5.7 12h6.6a2 2 0 0 0 1.9-1.4L16 5H4.1l-.4-1.8A2 2 0 0 0 1.8 1H1z"/></svg></span>
+            Онлайн-продажі
+          </div>
           <h2 class="section-title" style="text-align: left"><?= $shop_title; ?></h2>
           <div class="feature-description" style="max-width: 520px;">
             <?= $shop_text; ?>
