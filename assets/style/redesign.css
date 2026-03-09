@@ -932,6 +932,16 @@ img {
   transition: fill var(--transition-normal);
 }
 
+/* Override any inline SVG fills (e.g. .st0 {fill:black}) */
+.module-icon svg .st0,
+.module-icon svg path,
+.module-icon svg circle,
+.module-icon svg rect,
+.module-icon svg polygon {
+  fill: var(--royal-blue) !important;
+  transition: fill var(--transition-normal);
+}
+
 .module-card:hover .module-icon {
   background: var(--gradient-royal);
   color: var(--white);
@@ -940,6 +950,14 @@ img {
 
 .module-card:hover .module-icon svg {
   fill: var(--white);
+}
+
+.module-card:hover .module-icon svg .st0,
+.module-card:hover .module-icon svg path,
+.module-card:hover .module-icon svg circle,
+.module-card:hover .module-icon svg rect,
+.module-card:hover .module-icon svg polygon {
+  fill: var(--white) !important;
 }
 
 .module-title {
