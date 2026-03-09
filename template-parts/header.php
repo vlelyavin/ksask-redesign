@@ -39,11 +39,19 @@
   $linkedin_link = get_field("linkedin_link", "option");
   $telegram_link = get_field("telegram_link", "option");
 
-  // Banner fields (per-language)
+  // Banner fields (per-language) — fallback to defaults if ACF fields not yet registered
   $banner_enabled = get_field("banner_enabled", $current_lang);
   $banner_text = get_field("banner_text", $current_lang);
   $banner_link_text = get_field("banner_link_text", $current_lang);
   $banner_link_url = get_field("banner_link_url", $current_lang);
+
+  // Fallback: if ACF fields don't exist yet, show default Ukrainian banner
+  if ($banner_enabled === null && !$banner_text) {
+    $banner_enabled = true;
+    $banner_text = 'Відкритий лист страховому ринку України';
+    $banner_link_text = 'Ознайомитись';
+    $banner_link_url = '/vidkritij-list-strahovomu-rinku-ukraїni';
+  }
 
   // Header CTA (per-language)
   $header_cta_text = get_field("header_cta_text", $current_lang) ?: 'Замовити демо';
@@ -96,6 +104,11 @@
             <a href="<?= esc_url(pll_home_url('en')); ?>" class="lang-btn <?= ($current_lang === 'en') ? 'active' : ''; ?>">EN</a>
             <a href="<?= esc_url(pll_home_url('de')); ?>" class="lang-btn <?= ($current_lang === 'de') ? 'active' : ''; ?>">DE</a>
           </div>
+
+          <!-- CTA Button -->
+          <a href="<?= esc_url($header_cta_url ?: '#form-popup'); ?>" class="btn btn-primary header-cta">
+            <?= esc_html($header_cta_text); ?>
+          </a>
         </div>
       </div>
     </div>

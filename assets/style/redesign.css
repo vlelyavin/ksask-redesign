@@ -416,6 +416,12 @@ img {
   gap: 12px;
 }
 
+.header-cta {
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
 .lang-switcher {
   display: flex;
   align-items: center;
