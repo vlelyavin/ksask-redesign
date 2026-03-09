@@ -240,7 +240,7 @@
               <?php if (!empty($checklist)) { ?>
                 <ul class="feature-checklist">
                   <?php foreach ($checklist as $item) { ?>
-                    <li><i class="fas fa-check-circle"></i> <?= esc_html(is_array($item) ? $item['text'] : $item); ?></li>
+                    <li><span class="check-icon"><i class="fas fa-check"></i></span> <?= esc_html(is_array($item) ? $item['text'] : $item); ?></li>
                   <?php } ?>
                 </ul>
               <?php } ?>
