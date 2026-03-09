@@ -1471,11 +1471,13 @@ img {
 }
 
 .history-v-tag {
-  font-size: 0.8rem;
+  display: inline-block;
+  font-size: 0.85rem;
   color: var(--gray-600);
   background: var(--gray-100);
-  padding: 4px 10px;
-  border-radius: 4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
 }
 
 /* ========================================
