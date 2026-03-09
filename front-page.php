@@ -642,6 +642,12 @@
             ?>
             <div class="news-card animate-on-scroll stagger-<?= $news_stagger; ?>">
               <a href="<?php the_permalink(); ?>" class="news-image">
+                <?php
+                $categories = get_the_category();
+                if (!empty($categories)) {
+                  echo '<div class="news-badge">' . esc_html($categories[0]->name) . '</div>';
+                }
+                ?>
                 <?php if (has_post_thumbnail()) {
                   the_post_thumbnail('medium', ['alt' => get_the_title()]);
                 } ?>
