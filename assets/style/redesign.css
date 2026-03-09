@@ -2034,7 +2034,7 @@ img {
    ======================================== */
 .clients-section {
   padding: 100px 0;
-  background: var(--gray-100);
+  background: var(--white);
 }
 
 .clients-slider {
@@ -2072,17 +2072,17 @@ img {
 }
 
 .client-logo {
-  height: 50px;
+  height: 62px;
   width: auto;
-  max-width: 150px;
+  max-width: 188px;
   object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.6;
+  filter: none;
+  opacity: 1;
   transition: all var(--transition-normal);
 }
 
 .client-logo:hover {
-  filter: grayscale(0%);
+  filter: none;
   opacity: 1;
 }
 
