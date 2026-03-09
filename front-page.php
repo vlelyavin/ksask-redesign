@@ -210,21 +210,25 @@
         [
           'badge_icon' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.5 2.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM4 6.5A1.5 1.5 0 1 1 2.5 5 1.5 1.5 0 0 1 4 6.5zm2.5 0A1.5 1.5 0 1 1 5 5a1.5 1.5 0 0 1 1.5 1.5zm5 0A1.5 1.5 0 1 1 10 5a1.5 1.5 0 0 1 1.5 1.5zM6.5 13.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM14 6.5A1.5 1.5 0 1 1 12.5 5 1.5 1.5 0 0 1 14 6.5z"/></svg>',
           'badge_text' => 'Гнучкість',
+          'text' => 'Будь-який страховий продукт, схему нарахувань, процеси андеррайтингу та врегулювання можна налаштувати через конфігуратори без доопрацювання системи.',
           'checklist' => ['Налаштування без програмування', 'Візуальний редактор бізнес-процесів', 'Гнучка система ролей та прав доступу'],
         ],
         [
           'badge_icon' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 14h2V6H1v8zm4 0h2V2H5v12zm4 0h2V8H9v6zm4 0h2V4h-2v10z"/></svg>',
           'badge_text' => 'Аналітика',
+          'text' => 'Повна відповідність вимогам НБУ відповідно до Закону «Про страхування» (№ 1909-IX). Автоматичне формування звітності, інтеграція з державними реєстрами, підтримка електронних підписів та облік за лініями бізнесу.',
           'checklist' => ['Дашборди в реальному часі', 'Звіти для НБУ та внутрішні', 'Аналіз збитковості портфеля'],
         ],
         [
           'badge_icon' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.7 8.7l-2-2a1 1 0 0 0-1.4 1.4l2.7 2.7a1 1 0 0 0 1.4 0l2.7-2.7a1 1 0 0 0-1.4-1.4l-2 2zM11.3 7.3l2 2a1 1 0 0 1-1.4 1.4L9.2 8a1 1 0 0 1 0-1.4l2.7-2.7a1 1 0 0 1 1.4 1.4l-2 2z"/></svg>',
           'badge_text' => 'Інтеграції',
+          'text' => 'Автоматичний розрахунок нарахувань при будь-яких сценаріях: часткова оплата, розірвання, переукладення договору. Комісійні, повернення та звітність формуються коректно без ручного втручання.',
           'checklist' => ['API для зовнішніх систем', 'Імпорт/експорт даних', 'Інтеграція з ЦБД МТСБУ'],
         ],
         [
           'badge_icon' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 1L2 4.5v4c0 3.5 2.6 6.4 6 7.5 3.4-1.1 6-4 6-7.5v-4L8 1zm0 2.2l4 2.3v3c0 2.6-1.9 4.8-4 5.7-2.1-.9-4-3.1-4-5.7v-3l4-2.3z"/></svg>',
           'badge_text' => 'Безпека',
+          'text' => 'Вхід через браузер з підтримкою доменної авторизації (Active Directory). Гнучка рольова модель доступу: кожна дія доступна лише користувачам з відповідними дозволами.',
           'checklist' => ['Відповідність вимогам НБУ', 'Шифрування даних', 'Аудит усіх операцій'],
         ],
       ];
@@ -232,9 +236,10 @@
       <div class="features-grid">
         <?php foreach ($characteristics_blocks as $block) { ?>
           <?php
-          $fb = isset($feature_defaults[$feature_index]) ? $feature_defaults[$feature_index] : ['badge_icon' => '', 'badge_text' => '', 'checklist' => []];
+          $fb = isset($feature_defaults[$feature_index]) ? $feature_defaults[$feature_index] : ['badge_icon' => '', 'badge_text' => '', 'text' => '', 'checklist' => []];
           $badge_icon = !empty($block['badge_icon']) ? $block['badge_icon'] : $fb['badge_icon'];
           $badge_text = !empty($block['badge_text']) ? $block['badge_text'] : $fb['badge_text'];
+          $feature_text = !empty($block['text']) ? $block['text'] : $fb['text'];
           $checklist = !empty($block['checklist_items']) ? $block['checklist_items'] : array_map(function($t) { return ['text' => $t]; }, $fb['checklist']);
           ?>
           <div class="feature-row <?= ($feature_index % 2 !== 0) ? 'reverse' : ''; ?>">
@@ -249,7 +254,7 @@
               <?php } ?>
               <h3 class="feature-title"><?= $block['title']; ?></h3>
               <div class="feature-description">
-                <?= $block['text']; ?>
+                <?= $feature_text; ?>
               </div>
               <?php if (!empty($checklist)) { ?>
                 <ul class="feature-checklist">
