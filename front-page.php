@@ -276,17 +276,46 @@
           <h2 class="section-title"><?= $architecture_title; ?></h2>
           <p class="section-subtitle"><?= $architecture_text; ?></p>
 
-          <div class="architecture-text">
-            <?= $architecture_content_text; ?>
+          <?php
+          // TODO: Register ACF field 'architecture_features' (repeater with icon_class, text) in architecture_section
+          $arch_features = !empty($architecture_section['architecture_features']) ? $architecture_section['architecture_features'] : [
+            ['icon_class' => 'fas fa-globe', 'text' => 'Web-інтерфейс'],
+            ['icon_class' => 'fas fa-cogs', 'text' => 'Java-сервіси на Spring Boot'],
+            ['icon_class' => 'fas fa-database', 'text' => 'MS SQL Server'],
+            ['icon_class' => 'fas fa-expand-arrows-alt', 'text' => 'Горизонтальна масштабованість'],
+          ];
+          ?>
+          <div class="architecture-features">
+            <?php foreach ($arch_features as $feat) { ?>
+              <div class="architecture-feature">
+                <div class="architecture-feature-icon">
+                  <i class="<?= esc_attr($feat['icon_class']); ?>"></i>
+                </div>
+                <div class="architecture-feature-text"><?= esc_html($feat['text']); ?></div>
+              </div>
+            <?php } ?>
           </div>
 
+          <?php
+          $arch_tech_tags = !empty($architecture_section['tech_tags']) ? $architecture_section['tech_tags'] : ['Java', 'Spring Boot', 'MS SQL', 'REST API', 'Docker'];
+          ?>
           <div class="tech-tags">
-            <span class="tech-tag">Java</span>
-            <span class="tech-tag">Spring Boot</span>
-            <span class="tech-tag">MS SQL</span>
-            <span class="tech-tag">REST API</span>
-            <span class="tech-tag">Docker</span>
+            <?php foreach ($arch_tech_tags as $tag) { ?>
+              <span class="tech-tag"><?= esc_html(is_array($tag) ? $tag['name'] : $tag); ?></span>
+            <?php } ?>
           </div>
+
+          <?php
+          // TODO: Register ACF field 'tech_requirements_url' in architecture_section
+          $tech_req_url = !empty($architecture_section['tech_requirements_url']) ? $architecture_section['tech_requirements_url'] : '';
+          $tech_req_text = !empty($architecture_section['tech_requirements_text']) ? $architecture_section['tech_requirements_text'] : 'Технічні вимоги (PDF)';
+          ?>
+          <?php if ($tech_req_url) { ?>
+            <a href="<?= esc_url($tech_req_url); ?>" class="btn btn-outline" style="margin-top: 20px;" target="_blank">
+              <i class="fas fa-file-pdf"></i>
+              <?= esc_html($tech_req_text); ?>
+            </a>
+          <?php } ?>
         </div>
 
         <div class="feature-visual animate-on-scroll from-right">
