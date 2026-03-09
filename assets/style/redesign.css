@@ -1999,8 +1999,9 @@ img {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 40px;
+  margin-bottom: 60px;
 }
 
 .footer-logo-img {
@@ -2039,6 +2040,7 @@ img {
 .footer-social-link:hover {
   background: var(--royal-blue);
   color: var(--white);
+  transform: translateY(-3px);
 }
 
 .footer-column h4 {
@@ -2064,7 +2066,7 @@ img {
 }
 
 .footer-links a:hover {
-  color: var(--white);
+  color: var(--royal-blue-light);
 }
 
 .footer .menu {
@@ -2138,46 +2140,6 @@ img {
 
 .footer-bottom-links a:hover {
   color: var(--white);
-}
-
-/* ========================================
-     "Vidkritij List" Banner (above footer)
-   ======================================== */
-.file-banner {
-  background: var(--royal-blue-pale);
-  padding: 20px 0;
-  text-align: center;
-}
-
-.file-banner-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-
-.file-banner-icon {
-  width: 48px;
-  height: 48px;
-  flex-shrink: 0;
-}
-
-.file-banner-icon svg {
-  width: 100%;
-  height: 100%;
-  fill: var(--royal-blue);
-}
-
-.file-banner a {
-  color: var(--royal-blue);
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-decoration: none;
-  transition: var(--transition-fast);
-}
-
-.file-banner a:hover {
-  text-decoration: underline;
 }
 
 /* ========================================

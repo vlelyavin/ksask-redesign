@@ -67,19 +67,6 @@ $telegram_link = get_field("telegram_link", "option");
         ?>
       </div>
 
-      <!-- Nav Column 3 (Resources) -->
-      <div class="footer-column">
-        <h4>Ресурси</h4>
-        <?php
-        if (has_nav_menu('footer_3')) {
-          wp_nav_menu(array(
-            'theme_location' => 'footer_3',
-            'container' => false,
-          ));
-        }
-        ?>
-      </div>
-
       <!-- Contacts Column -->
       <div class="footer-column">
         <h4>Контакти</h4>
@@ -108,6 +95,7 @@ $telegram_link = get_field("telegram_link", "option");
       <p class="footer-copyright"><?= $footer_copyright; ?> <?= date("Y"); ?></p>
       <div class="footer-bottom-links">
         <a href="#">Політика конфіденційності</a>
+        <a href="#">Умови використання</a>
       </div>
     </div>
   </div>
