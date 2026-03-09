@@ -143,17 +143,9 @@
       ?>
 
       <div class="slide-menu-section">
-        <div class="slide-menu-section-title"><?= esc_html($slide_menu_quick_title); ?></div>
-        <nav class="slide-menu-nav">
-          <a href="#form-popup" class="slide-menu-link">
-            <i class="fas fa-play-circle"></i>
-            <?= esc_html($slide_menu_demo_text); ?>
-          </a>
-          <a href="<?= is_front_page() ? '#contacts' : '/#contacts' ?>" class="slide-menu-link">
-            <i class="fas fa-envelope"></i>
-            <?= esc_html($slide_menu_contact_text); ?>
-          </a>
-        </nav>
+        <a href="#form-popup" class="btn btn-primary" style="width: 100%; text-align: center; margin-top: 16px;">
+          <?= esc_html($slide_menu_demo_text); ?>
+        </a>
       </div>
     </div>
     <div class="slide-menu-footer">
