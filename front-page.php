@@ -1,0 +1,665 @@
+<?php get_template_part('template-parts/header') ?>
+
+<main class="main">
+
+  <!-- ========================================
+       Hero Section
+     ======================================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-bg-shape hero-bg-shape-1"></div>
+      <div class="hero-bg-shape hero-bg-shape-2"></div>
+    </div>
+
+    <?php
+    $intro_section = get_field('intro_section');
+    $intro_title = $intro_section['title'];
+    $intro_text = $intro_section['text'];
+    $slides = $intro_section['slides'];
+    $first_slide = $slides[0] ?? null;
+
+    $hero_badge_text = !empty($intro_section['badge_text']) ? $intro_section['badge_text'] : 'Спеціальна пропозиція';
+    $hero_cta_primary_text = !empty($intro_section['cta_primary_text']) ? $intro_section['cta_primary_text'] : 'Дізнатись ціну';
+    $hero_cta_primary_url = !empty($intro_section['cta_primary_url']) ? $intro_section['cta_primary_url'] : '#pricing';
+    $hero_cta_secondary_text = !empty($intro_section['cta_secondary_text']) ? $intro_section['cta_secondary_text'] : 'Переглянути демо';
+    $hero_cta_secondary_url = !empty($intro_section['cta_secondary_url']) ? $intro_section['cta_secondary_url'] : '#form-popup';
+    $hero_stats = !empty($intro_section['stats']) ? $intro_section['stats'] : [
+      ['value' => '18+', 'label' => 'років на ринку'],
+      ['value' => '11+', 'label' => 'страхових компаній'],
+      ['value' => '6.0', 'label' => 'версія системи'],
+    ];
+    $hero_floating_cards = !empty($intro_section['floating_cards']) ? $intro_section['floating_cards'] : [
+      ['icon_class' => 'fas fa-shield-alt', 'value' => '100%', 'label' => 'Відповідність НБУ'],
+      ['icon_class' => 'fas fa-code', 'value' => 'Open', 'label' => 'Вихідний код'],
+    ];
+    ?>
+
+    <div class="container hero-content">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <div class="hero-badge-dot"></div>
+            <span class="hero-badge-text"><?= esc_html($hero_badge_text); ?></span>
+          </div>
+
+          <h1 class="hero-title">
+            <?= $intro_title; ?>
+          </h1>
+
+          <p class="hero-description">
+            <?= $intro_text; ?>
+          </p>
+
+          <div class="hero-buttons">
+            <a href="<?= esc_url($hero_cta_primary_url); ?>" class="btn btn-primary">
+              <i class="fas fa-tag"></i>
+              <?= esc_html($hero_cta_primary_text); ?>
+            </a>
+            <a href="<?= esc_url($hero_cta_secondary_url); ?>" class="btn btn-secondary">
+              <i class="fas fa-play"></i>
+              <?= esc_html($hero_cta_secondary_text); ?>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <?php foreach ($hero_stats as $stat) { ?>
+              <div class="hero-stat">
+                <div class="hero-stat-value"><?= esc_html($stat['value']); ?></div>
+                <div class="hero-stat-label"><?= esc_html($stat['label']); ?></div>
+              </div>
+            <?php } ?>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <?php if ($first_slide) { ?>
+          <div class="hero-image-wrapper">
+            <?php echo wp_get_attachment_image($first_slide['slide_image_url'], 'large', false, ['class' => 'hero-image']); ?>
+            <div class="hero-image-overlay"></div>
+          </div>
+          <?php } ?>
+
+          <?php foreach ($hero_floating_cards as $i => $card) { ?>
+            <div class="hero-floating-card hero-floating-card-<?= $i + 1; ?>">
+              <div class="hero-card-icon">
+                <i class="<?= esc_attr($card['icon_class']); ?>"></i>
+              </div>
+              <div class="hero-card-value"><?= esc_html($card['value']); ?></div>
+              <div class="hero-card-label"><?= esc_html($card['label']); ?></div>
+            </div>
+          <?php } ?>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       Modules Section
+     ======================================== -->
+  <section class="modules-section section" id="modules">
+    <?php
+    $modules_group = get_field('modules_section');
+    $modules_title = $modules_group['title'];
+    $module_tiles = $modules_group['tiles'];
+    $stagger = 1;
+    ?>
+    <div class="container">
+      <h2 class="section-title animate-on-scroll"><?= $modules_title; ?></h2>
+      <p class="section-subtitle animate-on-scroll">
+        <?= !empty($modules_group['subtitle']) ? esc_html($modules_group['subtitle']) : 'Повний набір інструментів для автоматизації всіх бізнес-процесів страхової компанії'; ?>
+      </p>
+
+      <div class="modules-grid">
+        <?php foreach ($module_tiles as $tile) { ?>
+          <?php
+          $tag = !empty($tile['destination_page']) ? 'a' : 'div';
+          $href = !empty($tile['destination_page']) ? ' href="' . esc_url($tile['destination_page']) . '"' : '';
+          ?>
+          <<?= $tag; ?><?= $href; ?> class="module-card animate-on-scroll stagger-<?= $stagger; ?>" style="text-decoration:none;">
+            <div class="module-icon">
+              <?= $tile['icon']; ?>
+            </div>
+            <h3 class="module-title"><?= $tile['name']; ?></h3>
+          </<?= $tag; ?>>
+        <?php
+          $stagger++;
+        } ?>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       YouTube Section
+     ======================================== -->
+  <section class="youtube-section section" id="youtube">
+    <?php
+    $youtube_section = get_field('youtube_section');
+    $youtube_title = $youtube_section['title'];
+    $youtube_text = $youtube_section['text'];
+    $youtube_videos = $youtube_section['youtube_videos'];
+    $button_text = $youtube_section['button_text'];
+    $button_link = $youtube_section['button_link'];
+    $yt_stagger = 1;
+    ?>
+    <div class="container">
+      <h2 class="section-title animate-on-scroll"><?= $youtube_title; ?></h2>
+      <p class="section-subtitle animate-on-scroll"><?= $youtube_text; ?></p>
+
+      <div class="youtube-grid">
+        <?php foreach ($youtube_videos as $video) { ?>
+          <a href="<?= esc_url($video['youtube_video_link']); ?>" target="_blank" rel="noopener" class="video-card animate-on-scroll stagger-<?= $yt_stagger; ?>">
+            <div class="video-thumbnail">
+              <img src="<?= esc_url($video['preview_image_url']); ?>" alt="<?= esc_attr($video['title']); ?>" />
+              <div class="video-play-btn">
+                <i class="fas fa-play"></i>
+              </div>
+            </div>
+            <div class="video-content">
+              <h3 class="video-title"><?= $video['title']; ?></h3>
+              <p class="video-description"><?= $video['description']; ?></p>
+            </div>
+          </a>
+        <?php
+          $yt_stagger++;
+        } ?>
+      </div>
+
+      <div class="youtube-cta animate-on-scroll">
+        <a href="<?= esc_url($button_link); ?>" target="_blank" class="btn btn-primary">
+          <i class="fab fa-youtube"></i>
+          <?= $button_text; ?>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       Characteristics / Features Section
+     ======================================== -->
+  <section class="features-section section" id="features">
+    <?php
+    $characteristics_section = get_field('characteristics_section');
+    $characteristics_title = $characteristics_section['title'];
+    $characteristics_blocks = $characteristics_section['section_blocks'];
+    $feature_index = 0;
+    ?>
+    <div class="container">
+      <h2 class="section-title animate-on-scroll"><?= $characteristics_title; ?></h2>
+      <p class="section-subtitle animate-on-scroll"><?= !empty($characteristics_section['subtitle']) ? esc_html($characteristics_section['subtitle']) : 'Функціонал, що відповідає найвищим стандартам страхової галузі'; ?></p>
+
+      <div class="features-grid">
+        <?php foreach ($characteristics_blocks as $block) { ?>
+          <div class="feature-row <?= ($feature_index % 2 !== 0) ? 'reverse' : ''; ?>">
+            <div class="feature-content animate-on-scroll <?= ($feature_index % 2 !== 0) ? 'from-right' : 'from-left'; ?>">
+              <?php if (!empty($block['badge_text'])) { ?>
+                <div class="feature-badge">
+                  <i class="fas fa-check-circle"></i>
+                  <?= esc_html($block['badge_text']); ?>
+                </div>
+              <?php } ?>
+              <h3 class="feature-title"><?= $block['title']; ?></h3>
+              <div class="feature-description">
+                <?= $block['text']; ?>
+              </div>
+            </div>
+            <div class="feature-visual animate-on-scroll <?= ($feature_index % 2 !== 0) ? 'from-left' : 'from-right'; ?>">
+              <div class="feature-decoration feature-decoration-<?= ($feature_index % 2 === 0) ? '1' : '2'; ?>"></div>
+              <img src="<?= esc_url($block['image']); ?>" alt="<?= esc_attr($block['title']); ?>" class="feature-image" />
+            </div>
+          </div>
+        <?php
+          $feature_index++;
+        } ?>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       Web Shop / ІМКД Section
+     ======================================== -->
+  <section class="fund-exchange-section section" id="shop">
+    <?php
+    $shop_section = get_field('web_shop_section');
+    $shop_title = $shop_section['title'];
+    $shop_text = $shop_section['text'];
+    $shop_image_url = $shop_section['image'];
+    $shop_button_url = $shop_section['button_url'];
+    $shop_button_text = $shop_section['button_text'];
+    ?>
+    <div class="container">
+      <div class="fund-exchange-grid">
+        <div class="animate-on-scroll from-left">
+          <h2 class="section-title" style="text-align: left"><?= $shop_title; ?></h2>
+          <div class="feature-description" style="max-width: 520px;">
+            <?= $shop_text; ?>
+          </div>
+          <?php if (!empty($shop_button_url)) { ?>
+            <a class="btn btn-primary" href="<?= esc_url($shop_button_url); ?>" style="margin-top: 20px;">
+              <?= $shop_button_text; ?>
+            </a>
+          <?php } ?>
+        </div>
+        <div class="feature-visual animate-on-scroll from-right">
+          <div class="feature-decoration feature-decoration-2"></div>
+          <img src="<?= esc_url($shop_image_url); ?>" alt="<?= esc_attr($shop_title); ?>" class="feature-image" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       Architecture Section
+     ======================================== -->
+  <section class="architecture-section section" id="architecture">
+    <?php
+    $architecture_section = get_field('architecture_section');
+    $architecture_title = $architecture_section['title'];
+    $architecture_text = $architecture_section['text'];
+    $architecture_main = $architecture_section['main_content'];
+    $architecture_content_text = $architecture_main['text'];
+    $architecture_image = $architecture_main['image'];
+    ?>
+    <div class="container">
+      <div class="architecture-grid">
+        <div class="architecture-content animate-on-scroll from-left">
+          <h2 class="section-title"><?= $architecture_title; ?></h2>
+          <p class="section-subtitle"><?= $architecture_text; ?></p>
+
+          <div class="architecture-text">
+            <?= $architecture_content_text; ?>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">MS SQL</span>
+            <span class="tech-tag">REST API</span>
+            <span class="tech-tag">Docker</span>
+          </div>
+        </div>
+
+        <div class="feature-visual animate-on-scroll from-right">
+          <img src="<?= esc_url($architecture_image); ?>" alt="<?= esc_attr($architecture_title); ?>" class="feature-image" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       History Timeline Section (Horizontal)
+     ======================================== -->
+  <section class="history-section section" id="history">
+    <?php
+    $history_section = get_field('history_section');
+    $history_title = $history_section['title'];
+    $history_versions = $history_section['history_versions'];
+    ?>
+    <div class="container">
+      <h2 class="section-title animate-on-scroll"><?= $history_title; ?></h2>
+      <p class="section-subtitle animate-on-scroll"><?= !empty($history_section['subtitle']) ? esc_html($history_section['subtitle']) : 'Хронологія розвитку системи КСАСК ProfITsoft'; ?></p>
+
+      <div class="history-vertical animate-on-scroll">
+        <?php foreach ($history_versions as $version) { ?>
+          <div class="history-v-item">
+            <div class="history-v-year"><?= esc_html($version['year']); ?></div>
+            <div class="history-v-line">
+              <div class="history-v-dot"></div>
+            </div>
+            <div class="history-v-card">
+              <span class="history-v-version"><?= esc_html($version['version']); ?></span>
+              <h4 class="history-v-title"><?= esc_html($version['title']); ?></h4>
+              <div class="history-v-description"><?= $version['text']; ?></div>
+              <?php if (!empty($version['features'])) { ?>
+                <div class="history-v-tags">
+                  <?php foreach (explode(',', $version['features']) as $tag) { ?>
+                    <span class="history-v-tag"><?= esc_html(trim($tag)); ?></span>
+                  <?php } ?>
+                </div>
+              <?php } ?>
+            </div>
+          </div>
+        <?php } ?>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       Pricing Section
+     ======================================== -->
+  <section class="pricing-section section" id="pricing">
+    <?php
+    $prices_section = get_field('prices_section');
+    $prices_title = $prices_section['title'];
+    $prices_list = $prices_section['prices_list'];
+    $prices_title_dev = $prices_section['title_dev'];
+    $prices_text_dev = $prices_section['text_dev'];
+    $prices_list_for_dev = $prices_section['prices_list_for_dev'];
+    ?>
+    <?php
+    $prices_subtitle = !empty($prices_section['subtitle']) ? $prices_section['subtitle'] : 'Спеціальна пропозиція для страхових компаній України';
+    $prices_badge = !empty($prices_section['badge_text']) ? $prices_section['badge_text'] : 'АКЦІЯ';
+    $current_lang = pll_current_language();
+
+    // Get first license card and first dev support card
+    $license_card = $prices_list[0] ?? null;
+    $dev_card = $prices_list_for_dev[0] ?? null;
+
+    // License card features (from ACF or fallback)
+    $license_features = [];
+    if (!empty($license_card['features_list'])) {
+      $license_features = array_filter(array_map('trim', explode("\n", $license_card['features_list'])));
+    }
+    if (empty($license_features)) {
+      $license_features = ['Повний доступ до вихідного коду', 'Всі модулі системи', 'Необмежена кількість користувачів', 'Безстрокова ліцензія'];
+    }
+
+    $license_btn_text = !empty($license_card['button_text']) ? $license_card['button_text'] : 'Дізнатись умови';
+    $license_btn_url = !empty($license_card['button_url']) ? $license_card['button_url'] : '/licence-1-uah';
+    $license_period = !empty($license_card['period']) ? $license_card['period'] : 'одноразовий платіж';
+
+    // Dev card features (from ACF or fallback)
+    $dev_features = [];
+    if (!empty($dev_card['features_list'])) {
+      $dev_features = array_filter(array_map('trim', explode("\n", $dev_card['features_list'])));
+    }
+    if (empty($dev_features)) {
+      $dev_features = ['Команда фахівців', 'Доопрацювання під ваші потреби', 'Технічна підтримка', 'Оновлення системи'];
+    }
+
+    $dev_btn_text = !empty($dev_card['button_text']) ? $dev_card['button_text'] : 'Замовити консультацію';
+    $dev_btn_url = !empty($dev_card['button_url']) ? $dev_card['button_url'] : '#form-popup';
+    $dev_period = !empty($dev_card['period']) ? $dev_card['period'] : 'на місяць';
+    ?>
+    <div class="container">
+      <h2 class="section-title animate-on-scroll"><?= $prices_title; ?></h2>
+      <p class="section-subtitle animate-on-scroll"><?= esc_html($prices_subtitle); ?></p>
+
+      <div class="pricing-grid">
+        <!-- Card 1: License (featured) -->
+        <?php if ($license_card) { ?>
+          <div class="pricing-card featured animate-on-scroll stagger-1">
+            <div class="pricing-badge"><?= esc_html($prices_badge); ?></div>
+            <h3 class="pricing-title"><?= $license_card['title']; ?></h3>
+            <p class="pricing-subtitle"><?= $license_card['text'] ?? ''; ?></p>
+
+            <?php if ($current_lang == "ua") { ?>
+              <div class="pricing-old"><?= $license_card['fixed_price']; ?></div>
+              <div class="pricing-price">
+                <span class="pricing-price-value">1</span>
+                <span class="pricing-price-unit">грн</span>
+              </div>
+              <p class="pricing-period"><?= esc_html($license_period); ?></p>
+            <?php } else { ?>
+              <div class="pricing-old" style="visibility: hidden;">-</div>
+              <div class="pricing-price">
+                <span class="pricing-price-value"><?= $license_card['fixed_price']; ?></span>
+              </div>
+              <p class="pricing-period">&nbsp;</p>
+            <?php } ?>
+
+            <ul class="pricing-features">
+              <?php foreach ($license_features as $feat) { ?>
+                <li><i class="fas fa-check"></i> <?= esc_html($feat); ?></li>
+              <?php } ?>
+            </ul>
+
+            <a class="btn btn-primary" href="<?= esc_url($license_btn_url); ?>" style="width: 100%;"><?= esc_html($license_btn_text); ?></a>
+          </div>
+        <?php } ?>
+
+        <!-- Card 2: Dev Support -->
+        <?php if ($dev_card) { ?>
+          <div class="pricing-card animate-on-scroll stagger-2">
+            <h3 class="pricing-title"><?= $dev_card['title']; ?></h3>
+            <p class="pricing-subtitle"><?= $dev_card['text'] ?? ''; ?></p>
+            <div class="pricing-old" style="visibility: hidden;">-</div>
+            <div class="pricing-price">
+              <span class="pricing-price-value"><?= $dev_card['fixed_price']; ?></span>
+            </div>
+            <p class="pricing-period"><?= esc_html($dev_period); ?></p>
+
+            <ul class="pricing-features">
+              <?php foreach ($dev_features as $feat) { ?>
+                <li><i class="fas fa-check"></i> <?= esc_html($feat); ?></li>
+              <?php } ?>
+            </ul>
+
+            <a href="<?= esc_url($dev_btn_url); ?>" class="btn btn-outline" style="width: 100%;"><?= esc_html($dev_btn_text); ?></a>
+          </div>
+        <?php } ?>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       Exchange Fund Section (UA only)
+     ======================================== -->
+  <?php if (pll_current_language() == "ua") { ?>
+  <section class="fund-exchange-section section" id="exchange">
+    <?php
+    $exchange_section = get_field('exchange_section');
+    $exchange_title = $exchange_section['title'];
+    $exchange_description = $exchange_section['description'];
+    $exchange_benefits = !empty($exchange_section['benefits']) ? $exchange_section['benefits'] : [];
+    $exchange_image = !empty($exchange_section['image']) ? $exchange_section['image'] : '';
+    $exchange_btn_text = !empty($exchange_section['button_text']) ? $exchange_section['button_text'] : '';
+    $exchange_btn_url = !empty($exchange_section['button_url']) ? $exchange_section['button_url'] : '';
+    ?>
+    <div class="container">
+      <div class="fund-exchange-grid">
+        <div class="animate-on-scroll from-left">
+          <h2 class="section-title" style="text-align: left"><?= $exchange_title; ?></h2>
+          <div class="feature-description" style="max-width: 520px;">
+            <?= $exchange_description; ?>
+          </div>
+
+          <?php if ($exchange_benefits) { ?>
+            <div class="fund-benefits">
+              <?php foreach ($exchange_benefits as $benefit) { ?>
+                <div class="fund-benefit">
+                  <div class="fund-benefit-icon">
+                    <i class="<?= esc_attr($benefit['icon_class']); ?>"></i>
+                  </div>
+                  <div class="fund-benefit-content">
+                    <h4><?= esc_html($benefit['title']); ?></h4>
+                    <p><?= esc_html($benefit['description']); ?></p>
+                  </div>
+                </div>
+              <?php } ?>
+            </div>
+          <?php } ?>
+
+          <?php if ($exchange_btn_text && $exchange_btn_url) { ?>
+            <a href="<?= esc_url($exchange_btn_url); ?>" class="btn btn-outline" style="margin-top: 30px;">
+              <?= esc_html($exchange_btn_text); ?>
+            </a>
+          <?php } ?>
+        </div>
+
+        <?php if ($exchange_image) { ?>
+          <div class="feature-visual animate-on-scroll from-right">
+            <div class="feature-decoration feature-decoration-2"></div>
+            <img src="<?= esc_url($exchange_image); ?>" alt="<?= esc_attr($exchange_title); ?>" class="feature-image" />
+          </div>
+        <?php } ?>
+      </div>
+    </div>
+  </section>
+  <?php } ?>
+
+  <!-- ========================================
+       Certificates Section
+     ======================================== -->
+  <section class="certificates-section section" id="certificates">
+    <?php
+    $certificates_section = get_field('certificates_section');
+    $certificates_title = $certificates_section['title_1'];
+    $certificates_text = $certificates_section['text'];
+    $certificates_list = $certificates_section['certificates_list_1'];
+    $cert_stagger = 1;
+    ?>
+    <div class="container">
+      <h2 class="section-title animate-on-scroll"><?= $certificates_title; ?></h2>
+      <p class="section-subtitle animate-on-scroll"><?= $certificates_text; ?></p>
+
+      <div class="certificates-grid">
+        <?php foreach ($certificates_list as $certificate) { ?>
+          <div class="certificate-card animate-on-scroll stagger-<?= $cert_stagger; ?>">
+            <div class="certificate-image">
+              <img src="<?= esc_url($certificate['image_url']); ?>" alt="<?= esc_attr($certificate['title']); ?>" />
+            </div>
+            <div class="certificate-content">
+              <div class="certificate-title"><?= $certificate['title']; ?></div>
+            </div>
+          </div>
+        <?php $cert_stagger++; } ?>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       Education / Training Section
+     ======================================== -->
+  <section class="training-section section" id="training">
+    <?php
+    $education_section = get_field('education_section');
+    $education_title = $education_section['title'];
+    $education_text = $education_section['text'];
+    $education_button_text = $education_section['button_text'];
+    $education_button_url = $education_section['button_url'];
+    $education_image_url = $education_section['image_url'];
+    ?>
+    <div class="container">
+      <div class="training-grid">
+        <div class="training-content animate-on-scroll from-left">
+          <h2 class="section-title"><?= $education_title; ?></h2>
+          <p class="training-description"><?= $education_text; ?></p>
+
+          <?php
+          $edu_stats = !empty($education_section['stats']) ? $education_section['stats'] : [
+            ['value' => '20+', 'label' => 'Лекцій'],
+            ['value' => '40+', 'label' => 'Годин практики'],
+            ['value' => '100%', 'label' => 'Сертифікація'],
+          ];
+          ?>
+          <div class="training-stats">
+            <?php foreach ($edu_stats as $stat) { ?>
+              <div class="training-stat">
+                <div class="training-stat-value"><?= esc_html($stat['value']); ?></div>
+                <div class="training-stat-label"><?= esc_html($stat['label']); ?></div>
+              </div>
+            <?php } ?>
+          </div>
+
+          <a href="<?= esc_url($education_button_url); ?>" class="btn btn-primary">
+            <i class="fas fa-graduation-cap"></i>
+            <?= $education_button_text; ?>
+          </a>
+        </div>
+
+        <div class="training-image animate-on-scroll from-right">
+          <img src="<?= esc_url($education_image_url); ?>" alt="<?= esc_attr($education_title); ?>" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       News / Posts Section (UA only)
+     ======================================== -->
+  <?php if (pll_current_language() == "ua") { ?>
+  <?php
+  $args = [
+    'post_type' => 'post',
+    'posts_per_page' => 3,
+  ];
+
+  $posts_section = get_field("posts_section");
+  $posts_section_title = $posts_section['title'];
+  $posts_section_button_text = $posts_section['button_text'];
+  $posts_section_button_link = $posts_section['button_link'];
+
+  $all_posts = new WP_Query($args);
+  ?>
+
+  <section class="news-section section" id="news">
+    <div class="container">
+      <?php $posts_subtitle = !empty($posts_section['subtitle']) ? $posts_section['subtitle'] : 'Останні оновлення та новини про розвиток системи'; ?>
+      <?php $read_more_text = !empty($posts_section['read_more_text']) ? $posts_section['read_more_text'] : 'Читати далі'; ?>
+      <h2 class="section-title animate-on-scroll"><?= $posts_section_title; ?></h2>
+      <p class="section-subtitle animate-on-scroll"><?= esc_html($posts_subtitle); ?></p>
+
+      <div class="news-grid">
+        <?php $news_stagger = 1; ?>
+        <?php if ($all_posts->have_posts()) { ?>
+          <?php while ($all_posts->have_posts()) : $all_posts->the_post(); ?>
+            <?php
+            $excerpt = wp_strip_all_tags(get_the_excerpt());
+            $max_len = 120;
+            if (mb_strlen($excerpt) > $max_len) {
+              $excerpt = mb_substr($excerpt, 0, $max_len - 3) . '...';
+            }
+            ?>
+            <div class="news-card animate-on-scroll stagger-<?= $news_stagger; ?>">
+              <a href="<?php the_permalink(); ?>" class="news-image">
+                <?php if (has_post_thumbnail()) {
+                  the_post_thumbnail('medium', ['alt' => get_the_title()]);
+                } ?>
+              </a>
+              <div class="news-content">
+                <div class="news-date"><?php echo get_the_date(); ?></div>
+                <h3 class="news-title">
+                  <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                </h3>
+                <p class="news-excerpt"><?= $excerpt; ?></p>
+                <a href="<?php the_permalink(); ?>" class="news-link">
+                  <?= esc_html($read_more_text); ?> <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          <?php $news_stagger++; endwhile; ?>
+        <?php } ?>
+      </div>
+
+      <?php wp_reset_postdata(); ?>
+
+      <div class="news-cta animate-on-scroll">
+        <a href="<?= esc_url($posts_section_button_link); ?>" class="btn btn-outline">
+          <?= $posts_section_button_text; ?>
+        </a>
+      </div>
+    </div>
+  </section>
+  <?php } ?>
+
+  <!-- ========================================
+       Clients Section
+     ======================================== -->
+  <section class="clients-section section" id="clients">
+    <?php
+    $clients_section = get_field('clients_section');
+    $clients_title = $clients_section['title'];
+    $client_logos = $clients_section['client_logos'];
+    ?>
+    <div class="container">
+      <h2 class="section-title animate-on-scroll"><?= $clients_title; ?></h2>
+      <p class="section-subtitle animate-on-scroll"><?= !empty($clients_section['subtitle']) ? esc_html($clients_section['subtitle']) : 'Провідні страхові компанії України довіряють КСАСК ProfITsoft'; ?></p>
+
+      <div class="clients-slider">
+        <div class="clients-track">
+          <?php foreach ($client_logos as $client_logo) { ?>
+            <img
+              src="<?= esc_url($client_logo['logo']); ?>"
+              alt="Client"
+              class="client-logo"
+              style="height: <?= intval($client_logo['height']); ?>px;"
+            />
+          <?php } ?>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<?php get_template_part('template-parts/footer') ?>

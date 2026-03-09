@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+
+<head>
+  <meta charset="<?php bloginfo('charset'); ?>">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="<?php echo site_url(); ?>/favicon.ico" type="image/x-icon" />
+
+  <link rel="preconnect" href="<?php echo site_url(); ?>" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="<?php echo site_url(); ?>" crossorigin="anonymous">
+
+  <link rel="preload" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/fonts/inter/inter_variable.woff2" as="font" crossorigin="anonymous">
+
+  <link rel="preload" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/general.js" as="script" />
+  <link rel="preload" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/fonts/fonts.css" as="style" />
+  <link rel="preload" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/template-parts/header/header.min.css" as="style" />
+  <link rel="preload" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/template-parts/footer/footer.min.css" as="style" />
+  <link rel="preload" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/global.min.css" as="style" />
+
+  <link rel="preload" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/libs/glide.core.min.css" as="style">
+  <link rel="preload" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/libs/glide.theme.min.css" as="style">
+
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/fonts/fonts.css" type="text/css" />
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/template-parts/header/header.min.css" type="text/css" />
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/template-parts/footer/footer.min.css" type="text/css" />
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/global.min.css" type="text/css" />
+
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/libs/glide.core.min.css">
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/style/libs/glide.theme.min.css">
+
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/libs/glide.min.js"></script>
+
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/assets/js/general.js"></script>
+
+  <?php wp_head(); ?>
+  <?= get_field('google_analytics_code', 'option') ?>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+        <div class="header__menu__wrapper">
+          <div class="header__menu" id="nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <a href="<?= is_front_page() ? "#main" : "/" ?>" class="header__logo">
+          <img src="<?php the_field("site_logo", 'option') ?>" />
+        </a>
+        <?php
+        // add "raw" key and save data to variable
+
+        $langs_array = pll_the_languages(array('dropdown' => 1, 'hide_current' => 1, 'raw' => 1));
+        $current_lang = pll_current_language();
+
+        ?>
+
+        <div class="header__lang__wrapper">
+          <div class="header__lang__current">
+            <?= $current_lang; ?>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 48 48" width="48">
+              <path d="M14 20l10 10 10-10z" />
+              <path d="M0 0h48v48h-48z" fill="none" />
+            </svg>
+          </div>
+          <div class="header__lang__dropdown">
+            <?php if ($langs_array) { ?>
+              <?php foreach ($langs_array as $lang) { ?>
+                <a href="<?= $lang['url']; ?>" class="header__lang__dropdown__link">
+                  <?= $lang['slug']; ?>
+                </a>
+              <?php } ?>
+            <?php } ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <?php
+  // Display primary menu
+  if (has_nav_menu('primary')) {
+    wp_nav_menu(array(
+      'theme_location' => 'primary',
+      'container_class' => 'menu-main-container',
+    ));
+  }
+  ?>
+
+  <div class="contact__form">
+    <div class="contact__form__inner">
+      <svg class="contact__form__icon__close" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="39" cy="39" r="39" fill="#1B4177" />
+        <path d="M57.0154 52.3785C58.3282 53.6926 58.3282 55.7368 57.0154 57.0509C56.3589 57.708 55.5566 58 54.6814 58C53.8061 58 53.0038 57.708 52.3474 57.0509L39 43.6907L25.6526 57.0509C24.9962 57.708 24.1939 58 23.3186 58C22.4434 58 21.6411 57.708 20.9846 57.0509C19.6718 55.7368 19.6718 53.6926 20.9846 52.3785L34.3321 39.0183L20.9846 25.658C19.6718 24.3439 19.6718 22.2997 20.9846 20.9856C22.2975 19.6715 24.3397 19.6715 25.6526 20.9856L39 34.3458L52.3474 20.9856C53.6603 19.6715 55.7025 19.6715 57.0154 20.9856C58.3282 22.2997 58.3282 24.3439 57.0154 25.658L43.6679 39.0183L57.0154 52.3785Z" fill="white" />
+      </svg>
+
+      <?= do_shortcode(get_field("contact_form_shortcode", pll_current_language('slug'))) ?>
+    </div>
+  </div>
