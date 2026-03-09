@@ -55,7 +55,7 @@
   $slide_menu_contact_text = get_field("slide_menu_contact_text", $current_lang) ?: 'Зв\'язатись';
   ?>
 
-  <!-- Top Banner -->
+  <!-- Top Banner (always visible, not dismissible) -->
   <?php if ($banner_enabled && $banner_text) { ?>
   <div class="top-banner" id="topBanner">
     <div class="top-banner-content">
@@ -69,9 +69,6 @@
         <?php } ?>
       </span>
     </div>
-    <button class="top-banner-close" id="topBannerClose" aria-label="Close banner">
-      <i class="fas fa-times"></i>
-    </button>
   </div>
   <?php } ?>
 
@@ -93,29 +90,12 @@
 
         <!-- Header Actions (right) -->
         <div class="header-actions">
-          <!-- Language Switcher -->
+          <!-- Language Switcher (simple text links) -->
           <div class="lang-switcher" id="langSwitcher">
-            <button class="lang-current">
-              <?= strtoupper($current_lang); ?>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-                <path d="M14 20l10 10 10-10z" />
-              </svg>
-            </button>
-            <div class="lang-dropdown">
-              <?php if ($langs_array) { ?>
-                <?php foreach ($langs_array as $lang) { ?>
-                  <a href="<?= esc_url($lang['url']); ?>">
-                    <?= strtoupper($lang['slug']); ?>
-                  </a>
-                <?php } ?>
-              <?php } ?>
-            </div>
+            <a href="<?= esc_url(pll_home_url('uk')); ?>" class="lang-btn <?= ($current_lang === 'uk' || $current_lang === 'ua') ? 'active' : ''; ?>">UA</a>
+            <a href="<?= esc_url(pll_home_url('en')); ?>" class="lang-btn <?= ($current_lang === 'en') ? 'active' : ''; ?>">EN</a>
+            <a href="<?= esc_url(pll_home_url('de')); ?>" class="lang-btn <?= ($current_lang === 'de') ? 'active' : ''; ?>">DE</a>
           </div>
-
-          <!-- CTA Button (desktop only) -->
-          <a href="<?= $header_cta_url ? esc_url($header_cta_url) : '#form-popup'; ?>" class="btn btn-primary header-cta" style="padding: 10px 24px; font-size: 0.85rem;">
-            <?= esc_html($header_cta_text); ?>
-          </a>
         </div>
       </div>
     </div>

@@ -46,23 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
   initSlideMenu();
 
   // ========================================
-  // Top Banner Close
-  // ========================================
-  function initTopBanner() {
-    var closeBtn = document.getElementById("topBannerClose");
-    var banner = document.getElementById("topBanner");
-    var header = document.getElementById("header");
-
-    if (!closeBtn || !banner) return;
-
-    closeBtn.addEventListener("click", function () {
-      banner.style.display = "none";
-      if (header) header.classList.remove("with-banner");
-    });
-  }
-  initTopBanner();
-
-  // ========================================
   // Header Scroll Effect
   // ========================================
   function initHeaderScroll() {
@@ -123,26 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   initContactForm();
-
-  // ========================================
-  // Language Switcher
-  // ========================================
-  function initLanguageSwitcher() {
-    var switcher = document.getElementById("langSwitcher");
-    if (!switcher) return;
-
-    switcher.addEventListener("click", function (e) {
-      e.stopPropagation();
-      switcher.classList.toggle("open");
-    });
-
-    document.addEventListener("click", function (e) {
-      if (!switcher.contains(e.target)) {
-        switcher.classList.remove("open");
-      }
-    });
-  }
-  initLanguageSwitcher();
 
   // ========================================
   // Scroll Animations (IntersectionObserver)
@@ -223,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
     track.innerHTML = children + children;
 
     var scrollAmount = 0;
-    var speed = 1;
+    var speed = 0.4;
 
     function marqueeScroll() {
       scrollAmount += speed;
