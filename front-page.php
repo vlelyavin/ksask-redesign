@@ -190,25 +190,37 @@
       <h2 class="section-title animate-on-scroll"><?= $characteristics_title; ?></h2>
       <p class="section-subtitle animate-on-scroll"><?= !empty($characteristics_section['subtitle']) ? esc_html($characteristics_section['subtitle']) : 'Функціонал, що відповідає найвищим стандартам страхової галузі'; ?></p>
 
+      <?php
+      // Fallback badge texts and checklists for each feature block
+      $feature_defaults = [
+        ['badge' => '⚙️ Гнучкість', 'checklist' => ['Налаштування без програмування', 'Візуальний редактор бізнес-процесів', 'Гнучка система ролей та прав доступу']],
+        ['badge' => '📊 Аналітика', 'checklist' => ['Дашборди в реальному часі', 'Звіти для НБУ та внутрішні', 'Аналіз збитковості портфеля']],
+        ['badge' => '🔗 Інтеграції', 'checklist' => ['API для зовнішніх систем', 'Інтеграція з банками та платіжними системами', 'Обмін даними з державними реєстрами']],
+        ['badge' => '🛡️ Безпека', 'checklist' => ['Відповідність вимогам НБУ', 'Шифрування даних', 'Аудит усіх операцій']],
+      ];
+      ?>
       <div class="features-grid">
         <?php foreach ($characteristics_blocks as $block) { ?>
+          <?php
+          $fb = isset($feature_defaults[$feature_index]) ? $feature_defaults[$feature_index] : ['badge' => '', 'checklist' => []];
+          $badge = !empty($block['badge_text']) ? $block['badge_text'] : $fb['badge'];
+          $checklist = !empty($block['checklist_items']) ? $block['checklist_items'] : array_map(function($t) { return ['text' => $t]; }, $fb['checklist']);
+          ?>
           <div class="feature-row <?= ($feature_index % 2 !== 0) ? 'reverse' : ''; ?>">
             <div class="feature-content animate-on-scroll <?= ($feature_index % 2 !== 0) ? 'from-right' : 'from-left'; ?>">
-              <?php if (!empty($block['badge_text'])) { ?>
+              <?php if ($badge) { ?>
                 <div class="feature-badge">
-                  <i class="fas fa-check-circle"></i>
-                  <?= esc_html($block['badge_text']); ?>
+                  <?= esc_html($badge); ?>
                 </div>
               <?php } ?>
               <h3 class="feature-title"><?= $block['title']; ?></h3>
               <div class="feature-description">
                 <?= $block['text']; ?>
               </div>
-              <?php // TODO: Register ACF field 'checklist_items' (repeater) in characteristics_section > section_blocks ?>
-              <?php if (!empty($block['checklist_items'])) { ?>
+              <?php if (!empty($checklist)) { ?>
                 <ul class="feature-checklist">
-                  <?php foreach ($block['checklist_items'] as $item) { ?>
-                    <li><i class="fas fa-check-circle"></i> <?= esc_html($item['text']); ?></li>
+                  <?php foreach ($checklist as $item) { ?>
+                    <li><i class="fas fa-check-circle"></i> <?= esc_html(is_array($item) ? $item['text'] : $item); ?></li>
                   <?php } ?>
                 </ul>
               <?php } ?>
