@@ -1,6 +1,6 @@
 <?php
 /**
- * Populate ACF values for new/changed fields (visual-fixes-v5).
+ * Populate ACF values for new/changed fields (visual-fixes-v5b).
  *
  * Run with: wp eval-file wp-content/themes/profitsoft/populate-acf-values.php
  *
@@ -34,6 +34,13 @@ $values = [
 		'badge_texts' => [ 'Гнучкість', 'Аналітика', 'Інтеграції', 'Безпека' ],
 		// characteristics_section.section_blocks[].badge_icon (new field)
 		'badge_icons' => [ $icon_gear, $icon_chart, $icon_link, $icon_shield ],
+		// characteristics_section.section_blocks[].text (shortened descriptions)
+		'characteristics_texts' => [
+			'Будь-який страховий продукт, схему нарахувань, процеси андеррайтингу та врегулювання можна налаштувати через конфігуратори без доопрацювання системи.',
+			'Повна відповідність вимогам НБУ відповідно до Закону «Про страхування» (№ 1909-IX). Автоматичне формування звітності, інтеграція з державними реєстрами, підтримка електронних підписів та облік за лініями бізнесу.',
+			'Автоматичний розрахунок нарахувань при будь-яких сценаріях: часткова оплата, розірвання, переукладення договору. Комісійні, повернення та звітність формуються коректно без ручного втручання.',
+			'Вхід через браузер з підтримкою доменної авторизації (Active Directory). Гнучка рольова модель доступу: кожна дія доступна лише користувачам з відповідними дозволами.',
+		],
 		// modules_section.tiles[].description (new field)
 		'module_descriptions' => [
 			'Управління продажами, калькулятори, оформлення договорів',
@@ -45,10 +52,21 @@ $values = [
 			'Управління договорами перестрахування та розрахунками',
 			'Бухгалтерський облік, звітність, управління фінансами',
 		],
+		// prices_section — card titles & descriptions
+		'pricing_license_title' => 'Ліцензія',
+		'pricing_license_text'  => 'На право безстрокового використання КСАСК «ProfITsoft»',
+		'pricing_dev_title'     => 'Команда інженерів',
+		'pricing_dev_text'      => 'Для доопрацювання КСАСК «ProfITsoft». Якщо потрібна більша команда, вартість збільшуватиметься.',
 	],
 	'en' => [
 		'badge_texts' => [ 'Flexibility', 'Analytics', 'Integrations', 'Security' ],
 		'badge_icons' => [ $icon_gear, $icon_chart, $icon_link, $icon_shield ],
+		'characteristics_texts' => [
+			'Description in English',
+			'Description in English',
+			'Description in English',
+			'Description in English',
+		],
 		'module_descriptions' => [
 			'Description in English',
 			'Description in English',
@@ -59,20 +77,34 @@ $values = [
 			'Description in English',
 			'Description in English',
 		],
+		'pricing_license_title' => 'License',
+		'pricing_license_text'  => 'Description in English',
+		'pricing_dev_title'     => 'Engineering Team',
+		'pricing_dev_text'      => 'Description in English',
 	],
 	'de' => [
 		'badge_texts' => [ 'Flexibilität', 'Analytik', 'Integrationen', 'Sicherheit' ],
 		'badge_icons' => [ $icon_gear, $icon_chart, $icon_link, $icon_shield ],
-		'module_descriptions' => [
-			'Description in German',
-			'Description in German',
-			'Description in German',
-			'Description in German',
-			'Description in German',
-			'Description in German',
-			'Description in German',
-			'Description in German',
+		'characteristics_texts' => [
+			'Beschreibung auf Deutsch',
+			'Beschreibung auf Deutsch',
+			'Beschreibung auf Deutsch',
+			'Beschreibung auf Deutsch',
 		],
+		'module_descriptions' => [
+			'Beschreibung auf Deutsch',
+			'Beschreibung auf Deutsch',
+			'Beschreibung auf Deutsch',
+			'Beschreibung auf Deutsch',
+			'Beschreibung auf Deutsch',
+			'Beschreibung auf Deutsch',
+			'Beschreibung auf Deutsch',
+			'Beschreibung auf Deutsch',
+		],
+		'pricing_license_title' => 'Lizenz',
+		'pricing_license_text'  => 'Beschreibung auf Deutsch',
+		'pricing_dev_title'     => 'Ingenieurteam',
+		'pricing_dev_text'      => 'Beschreibung auf Deutsch',
 	],
 ];
 
@@ -114,6 +146,12 @@ foreach ( $languages as $lang ) {
 					$updated++;
 				}
 			}
+			// text — always overwrite with shortened descriptions
+			if ( isset( $lang_values['characteristics_texts'][ $i ] ) ) {
+				$block['text'] = $lang_values['characteristics_texts'][ $i ];
+				$changed = true;
+				$updated++;
+			}
 		}
 		unset( $block );
 
@@ -141,6 +179,33 @@ foreach ( $languages as $lang ) {
 		if ( $changed ) {
 			$modules_section['tiles'] = $tiles;
 			update_field( 'modules_section', $modules_section, $page_id );
+		}
+	}
+
+	// --- Update prices_section — card titles & descriptions ---
+	$prices_section = get_field( 'prices_section', $page_id );
+
+	if ( $prices_section ) {
+		$changed = false;
+
+		// License card (prices_list[0])
+		if ( ! empty( $prices_section['prices_list'][0] ) ) {
+			$prices_section['prices_list'][0]['title'] = $lang_values['pricing_license_title'];
+			$prices_section['prices_list'][0]['text']  = $lang_values['pricing_license_text'];
+			$changed = true;
+			$updated += 2;
+		}
+
+		// Dev support card (prices_list_for_dev[0])
+		if ( ! empty( $prices_section['prices_list_for_dev'][0] ) ) {
+			$prices_section['prices_list_for_dev'][0]['title'] = $lang_values['pricing_dev_title'];
+			$prices_section['prices_list_for_dev'][0]['text']  = $lang_values['pricing_dev_text'];
+			$changed = true;
+			$updated += 2;
+		}
+
+		if ( $changed ) {
+			update_field( 'prices_section', $prices_section, $page_id );
 		}
 	}
 
